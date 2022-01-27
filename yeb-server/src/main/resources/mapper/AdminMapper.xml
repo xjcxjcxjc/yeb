@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xjc.mapper.AdminMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xjc.pojo.use.Admin">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="phone" property="phone" />
+        <result column="telephone" property="telephone" />
+        <result column="address" property="address" />
+        <result column="enabled" property="enabled" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="userFace" property="userFace" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <resultMap id="AdminWithRole" type="Admin" extends="BaseResultMap">
+        <collection property="roles" ofType="Role">
+            <id column="rid" property="id"/>
+            <result column="rname" property="name"/>
+            <result column="rnameZh" property="nameZh"/>
+        </collection>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, phone, telephone, address, enabled, username, password, userFace, remark
+    </sql>
+
+
+    <select id="getAllAdmin" resultMap="AdminWithRole">
+        SELECT
+        ad.*,
+        r.id AS rid,
+                    r.`name` AS rname,
+                    r.nameZh AS rnameZh
+        FROM
+        t_admin ad,
+        t_admin_role ar,
+        t_role r
+        WHERE
+        ad.id =ar.adminId
+        AND
+        ar.rid=r.id
+        AND
+        ad.id != #{curtId}
+        AND
+        ad.name LIKE CONCAT("%",#{keywords},"%");
+    </select>
+</mapper>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎入职yeb</title>
+</head>
+<body>
+    <span>欢迎加入我们的大家庭</span>
+<table>
+    <tr>
+        <td>姓名</td>
+        <td th:text="${name}"></td>
+    </tr>
+    <tr>
+        <td>职位</td>
+        <td th:text="${posName}"></td>
+    </tr>
+    <tr>
+        <td>职称</td>
+        <td th:text="${jobLevel}"></td>
+    </tr>
+    <tr>
+        <td>部门</td>
+        <td th:text="${department}"></td>
+    </tr>
+
+
+</table>
+</body>
+</html>
