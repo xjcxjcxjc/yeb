@@ -5,6 +5,7 @@ import com.xjc.pojo.use.Admin;
 import com.xjc.pojo.use.RespBean;
 import com.xjc.service.IAdminService;
 import com.xjc.util.FastDFSClient;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.io.IOException;
 import java.util.Map;
@@ -63,8 +65,8 @@ public class AdminInfoController {
     }
 
     @ApiOperation("更新头像")
-    @PostMapping("/img")
-    public RespBean updateAdminUserPace(MultipartFile file, Integer id, Authentication authentication){
+    @PostMapping(value = "/img")
+    public RespBean updateAdminUserPace(@RequestParam("file") MultipartFile file ,Integer id,@ApiIgnore Authentication authentication){
         String url= null;
         try {
             url = fastDFSClient.uploadFile(file);

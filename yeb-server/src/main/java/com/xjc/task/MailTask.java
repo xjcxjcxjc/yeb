@@ -24,7 +24,7 @@ import java.util.List;
  * @create : 2022/1/19 12:59
  */
 
-@Service
+//@Service
 public class MailTask {
 
     @Autowired

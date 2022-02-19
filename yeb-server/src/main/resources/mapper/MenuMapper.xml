@@ -75,7 +75,7 @@
         m1.id=m2.parentid
         AND m2.id=mr.mid
         AND mr.rid=ar.rid
-        AND ar.adminId=1
+        AND ar.adminId=#{adminId}
         AND m2.enabled =TRUE
         ORDER BY m2.id
     </select>

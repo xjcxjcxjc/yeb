@@ -12,17 +12,15 @@ import com.xjc.service.IAdminService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
 
 @RestController
 @Api(value = "登录控制器")
-@RequestMapping("/system/basic")
 public class LoginController {
 
     @Autowired
@@ -37,20 +35,20 @@ public class LoginController {
 
 
     @PostMapping("/login")
-    public RespBean login(AdminLoginParam adminLoginParam, HttpServletRequest httpServletRequest){
+    public RespBean login(@RequestBody AdminLoginParam adminLoginParam, HttpServletRequest httpServletRequest){
         return iAdminService.login(adminLoginParam.getUsername(),adminLoginParam.getPassword(),
                 adminLoginParam.getCode(),httpServletRequest);
     }
 
+
+
     @GetMapping("/admin/info")
     public Admin info(Principal principal){
-        if (null==principal){
+        Admin admin= (Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (null==admin){
             return null;
         }
-        String username = principal.getName();
-        Admin admin = iAdminService.getAdminByUserName(username);
         admin.setPassword(null);
-        admin.setRoles(iAdminService.getRoles(admin.getId()));
         return admin;
     }
 

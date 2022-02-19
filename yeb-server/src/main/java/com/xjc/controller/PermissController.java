@@ -43,7 +43,7 @@ public class PermissController {
 
     @ApiOperation("添加角色")
     @PostMapping("/role")
-    public RespBean addRole(Role role){
+    public RespBean addRole(@RequestBody Role role){
         role.setName("ROLE_"+role.getName());
         if (iRoleService.save(role)){
             return RespBean.success("添加成功");
@@ -71,13 +71,14 @@ public class PermissController {
         return iMenuService.getAllMenus();
     }
 
+
     @ApiOperation("根据用户角色id获取菜单id")
     @GetMapping("/menus/{rid}")
     private List<Integer> getMenusByRid(@PathVariable Integer rid){
         return iMenuRoleService.list(new QueryWrapper<MenuRole>().eq("rid",rid)).stream().
                 map(MenuRole::getMid).collect(Collectors.toList());
-
     }
+
 
     @ApiOperation("更新用户的菜单")
     @PutMapping("/")

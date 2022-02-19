@@ -31,22 +31,22 @@
 
 
     <select id="getAllAdmin" resultMap="AdminWithRole">
-        SELECT
-        ad.*,
+
+        select
+        a.*,
         r.id AS rid,
-                    r.`name` AS rname,
-                    r.nameZh AS rnameZh
+        r.`name` AS rname,
+        r.nameZh AS rnameZh
         FROM
-        t_admin ad,
-        t_admin_role ar,
-        t_role r
+        t_admin a
+        LEFT JOIN t_admin_role ar ON ar.adminId=a.id
+        LEFT JOIN t_role r on r.id=ar.rid
         WHERE
-        ad.id =ar.adminId
-        AND
-        ar.rid=r.id
-        AND
-        ad.id != #{curtId}
-        AND
-        ad.name LIKE CONCAT("%",#{keywords},"%");
+        a.id!= #{curtId}
+        <if test="null!=keywords and ''!=keywords">
+            AND a.`name` LIKE CONCAT( '%', #{keywords}, '%' )
+        </if>
+        ORDER BY
+        a.id
     </select>
 </mapper>

@@ -18,7 +18,6 @@ import java.util.List;
  * 这个方法绑定在方法上，基本没用
  * 但是如果用户传了authority，不用这个就会报错，因为没对象
  *
- *
  */
 
 public class CustomAuthorityDeserializer extends JsonDeserializer {

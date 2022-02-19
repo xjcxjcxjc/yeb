@@ -9,6 +9,7 @@ import com.xjc.service.IMenuRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
@@ -26,7 +27,13 @@ public class MenuRoleServiceImpl extends ServiceImpl<MenuRoleMapper, MenuRole> i
     @Autowired
     private RoleMapper roleMapper;
 
+
     @Override
+    /**
+     * 这里先执行了删除所有menu然后插入，这应该是事务的
+     * 问题：数据库和缓存一致性问题，数据库改了，但是缓存数据库没改，应该在update后失效的
+     */
+    @Transactional
     public RespBean updateRoles(Integer rid, Integer[] mids) {
         if (null==roleMapper.selectById(rid)){
             return RespBean.error("角色不存在");
@@ -39,7 +46,7 @@ public class MenuRoleServiceImpl extends ServiceImpl<MenuRoleMapper, MenuRole> i
         if (result==mids.length){
             return RespBean.success("添加成功");
         }else{
-            return RespBean.error("添加失败");
+            throw new RuntimeException("数据添加失败");
         }
 
     }

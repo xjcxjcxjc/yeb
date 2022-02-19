@@ -72,15 +72,17 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         if (null==userDetails||!passwordEncoder.matches(password,userDetails.getPassword())){
             return RespBean.error("用户名或密码不正确");
         }
+
         if (!userDetails.isEnabled()){
             return RespBean.error("用户被禁止访问");
         }
+
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationTok
                 =new UsernamePasswordAuthenticationToken(userDetails,null,
                 userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationTok);
 
-
+        
         //生成token
         String token = jwtTokenUtil.generateToken(userDetails);
         Map<String,String> tokenMap = new HashMap<>();

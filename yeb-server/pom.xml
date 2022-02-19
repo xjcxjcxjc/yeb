@@ -46,6 +46,7 @@
     </dependency>
 
 
+
     <!--mybatis-plus 依赖-->
     <dependency>
       <groupId>com.baomidou</groupId>
@@ -75,10 +76,6 @@
       <artifactId>freemarker</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-    </dependency>
 
     <dependency>
       <groupId>io.springfox</groupId>
@@ -169,7 +166,15 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
-
-
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>

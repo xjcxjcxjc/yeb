@@ -21,7 +21,8 @@
 
     <name>yeb</name>
     <description>Demo project for Spring Boot</description>
-<!--    <packaging>pom</packaging>-->
+<!--    这里用pom好像会有问题-->
+    <packaging>pom</packaging>
     <properties>
         <java.version>1.8</java.version>
     </properties>

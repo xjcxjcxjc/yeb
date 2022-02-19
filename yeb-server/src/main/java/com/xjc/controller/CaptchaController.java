@@ -27,11 +27,8 @@ import java.io.PrintWriter;
 @RestController
 public class CaptchaController {
 
-
-
     @Autowired
     DefaultKaptcha defaultKaptcha;
-
 
 
     @ApiOperation("验证码")

@@ -13,8 +13,10 @@
     </resultMap>
 
     <resultMap id="DepartmentWithChildren" type="Department">
+<!--        手动添加 -->
+        <result property="id" column="id"></result>
         <collection property="children" ofType="Department"
-                    select="DepartmentMapper.getAllDepartment" column="id">
+                    select="com.xjc.mapper.DepartmentMapper.getAllDepartment" column="id">
         </collection>
     </resultMap>
 
@@ -24,7 +26,8 @@
     </sql>
 
 
-    <select id="getAllDepartment" resultMap="DepartmentWithChildren">
+    <select id="getAllDepartment" resultMap="DepartmentWithChildren"
+    >
         select
         <include refid="Base_Column_List"></include>
         from t_department
@@ -33,7 +36,11 @@
 
 
     <select id="addDepartment" statementType="CALLABLE">
-        call myAddDep(#{name,mode=IN,jdbcType=VARCHAR},#{parentId,mode=IN,jdbcType=INTEGER},#{enabled,mode=IN,jdbcType=BOOLEAN},#{result,mode=OUT,jdbcType=INTEGER},#{id,mode=OUT,jdbcType=INTEGER})
+        call myAddDep(#{name,mode=IN,jdbcType=VARCHAR},
+        #{parentId,mode=IN,jdbcType=INTEGER},
+        #{enabled,mode=IN,jdbcType=BOOLEAN},
+        #{result,mode=OUT,jdbcType=INTEGER},
+        #{id,mode=OUT,jdbcType=INTEGER})
     </select>
 
     <select id="deleteDep" statementType="CALLABLE">

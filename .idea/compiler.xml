@@ -7,11 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="yeb-generator" />
         <module name="springsecurity-oauth2" />
         <module name="yeb-server" />
-        <module name="yeb-generator" />
         <module name="yeb-mail" />
-        <module name="yeb" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

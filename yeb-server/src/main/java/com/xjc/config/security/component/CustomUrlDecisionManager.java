@@ -24,8 +24,11 @@ public class CustomUrlDecisionManager implements AccessDecisionManager {
     @Override
     public void decide(Authentication authentication, Object object,
                        Collection<ConfigAttribute> configAttributes) throws AccessDeniedException, InsufficientAuthenticationException {
+        /**
+         * needurl访问需要的role，
+         * ROLE_LOGIN就是数据库没有匹配的url，
+         */
         for (ConfigAttribute configAttribute:configAttributes ) {
-
             String needUrl= configAttribute.getAttribute();
             if ("ROLE_LOGIN".equals(needUrl)){
                 //未登录用户点了不存在的url
@@ -36,6 +39,9 @@ public class CustomUrlDecisionManager implements AccessDecisionManager {
                 }
             }else{
                 Collection<? extends GrantedAuthority> grantedAuthorities= authentication.getAuthorities();
+                /**
+                 * 循环用户的角色有无匹配的
+                 */
                 for (GrantedAuthority grantedAuthority:grantedAuthorities){
                     if (needUrl.equals(grantedAuthority.getAuthority())){
                         return;

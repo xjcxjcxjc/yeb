@@ -30,6 +30,7 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
         return departmentMapper.getAllDepartment(-1);
     }
 
+
     @Override
     public RespBean addDepartment(Department department) {
         department.setEnabled(true);

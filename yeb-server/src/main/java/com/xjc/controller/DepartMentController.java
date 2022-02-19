@@ -30,7 +30,7 @@ public class DepartMentController {
 
     @ApiOperation("添加department")
     @PostMapping("/")
-    RespBean addDepartment(Department department){
+    RespBean addDepartment(@RequestBody Department department){
         return iDepartmentService.addDepartment(department);
     }
 

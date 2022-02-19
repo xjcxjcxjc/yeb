@@ -83,8 +83,8 @@ public class CodeGenerator {
 				.setEntity("pojo")
 				.setMapper("mapper")
 				.setService("service")
-				.setServiceImpl("service.imp");
-//				.setController("controller");
+				.setServiceImpl("service.imp")
+				.setController("controller");
 		mpg.setPackageInfo(pc);
 
 		// 自定义配置
@@ -138,5 +138,6 @@ public class CodeGenerator {
 		mpg.setTemplateEngine(new FreemarkerTemplateEngine());
 		mpg.execute();
 	}
+
 
 }

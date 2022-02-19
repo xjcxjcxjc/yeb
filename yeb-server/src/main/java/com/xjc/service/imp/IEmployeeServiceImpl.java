@@ -69,8 +69,7 @@ public class IEmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> 
         employee.setContractTerm(Double.parseDouble(decimalFormat.format(days/365)));
 
         if (1==employeeMapper.insert(employee)){
-//            String id=UUID.randomUUID().toString();
-            String id="123456";
+            String id=UUID.randomUUID().toString();
 
             MailLog mailLog=new MailLog();
             mailLog.setMsgId(id);
@@ -83,6 +82,7 @@ public class IEmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> 
             mailLog.setCreateTime(LocalDateTime.now());
             mailLog.setUpdateTime(LocalDateTime.now());
             mailLogMapper.insert(mailLog);
+
 
             rabbitTemplate.convertAndSend(MailConstants.MAIL_EXCHANGE_NAME
                     ,MailConstants.MAIL_ROUTING_KEY_NAME,employee,new CorrelationData(id));

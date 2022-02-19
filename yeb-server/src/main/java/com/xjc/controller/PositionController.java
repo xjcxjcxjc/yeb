@@ -46,6 +46,7 @@ public class PositionController {
     @PutMapping("/")
     public RespBean updatePostion(@RequestBody Position position){
         if (iPositionService.updateById(position)){
+
             return RespBean.success("更新成功");
         }else {
             return RespBean.error("更新失败");

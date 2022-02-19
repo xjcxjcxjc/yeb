@@ -1,6 +1,7 @@
 package com.xjc.controller;
 
 
+import com.baomidou.mybatisplus.extension.api.R;
 import com.xjc.pojo.use.RespBean;
 import com.xjc.pojo.Joblevel;
 import com.xjc.service.IJoblevelService;
@@ -34,7 +35,7 @@ public class JobLevelController {
 
     @ApiOperation("添加职称")
     @PostMapping("/")
-    public RespBean addJobLevel(Joblevel joblevel){
+    public RespBean addJobLevel(@RequestBody Joblevel joblevel){
         joblevel.setCreateDate(LocalDateTime.now());
         if (iJoblevelService.save(joblevel)){
             return RespBean.success("添加成功");
