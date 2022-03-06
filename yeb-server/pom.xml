@@ -53,6 +53,8 @@
       <artifactId>mybatis-plus-boot-starter</artifactId>
       <version>3.4.1</version>
     </dependency>
+
+
 <!--    序列化-->
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>

@@ -1,0 +1,33 @@
+{
+  "groups": [
+    {
+      "name": "jwt",
+      "type": "com.xjc.config.security.component.JwtProperties",
+      "sourceType": "com.xjc.config.security.component.JwtProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "jwt.expiration",
+      "type": "java.lang.Integer",
+      "sourceType": "com.xjc.config.security.component.JwtProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "jwt.secret",
+      "type": "java.lang.String",
+      "sourceType": "com.xjc.config.security.component.JwtProperties"
+    },
+    {
+      "name": "jwt.token-head",
+      "type": "java.lang.String",
+      "sourceType": "com.xjc.config.security.component.JwtProperties"
+    },
+    {
+      "name": "jwt.token-header",
+      "type": "java.lang.String",
+      "sourceType": "com.xjc.config.security.component.JwtProperties"
+    }
+  ],
+  "hints": []
+}

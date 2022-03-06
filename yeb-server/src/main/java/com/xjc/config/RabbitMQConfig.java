@@ -41,7 +41,8 @@ public class RabbitMQConfig {
         rabbitTemplate.setConfirmCallback((correlationData, ack, cause) -> {
             String id=correlationData.getId();
             if (ack){
-                mailLogService.update(new UpdateWrapper<MailLog>().set("status",1).eq("msgId",id));
+                mailLogService.update(new UpdateWrapper<MailLog>().set("status",1)
+                        .eq("msgId",id));
             }else{
                 log.info("{}==============>",id,cause);
             }

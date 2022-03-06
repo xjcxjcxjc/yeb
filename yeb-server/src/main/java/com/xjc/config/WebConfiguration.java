@@ -65,9 +65,6 @@ public class WebConfiguration implements WebMvcConfigurer {
         ObjectMapper objectMapper = converter.getObjectMapper();
 //        // 生成JSON时,将所有Long转换成String
         SimpleModule simpleModule = new SimpleModule();
-//        simpleModule.addSerializer(Long.class, ToStringSerializer.instance);
-//        simpleModule.addSerializer(Long.TYPE, ToStringSerializer.instance);
-//        objectMapper.registerModule(simpleModule);
 
         simpleModule.addSerializer(LocalDate.class, new LocalDateSerializer(
                 DateTimeFormatter.ofPattern(DatePattern.NORM_DATE_PATTERN)));

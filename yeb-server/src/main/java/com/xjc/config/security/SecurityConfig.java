@@ -38,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private CustomFilter customFilter;
+
     @Autowired
     private CustomUrlDecisionManager customUrlDecisionManager;
 
@@ -66,6 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/ws/**"
         );
     }
+
 
 
     /**

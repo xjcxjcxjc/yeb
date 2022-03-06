@@ -53,7 +53,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void configureClientInboundChannel(ChannelRegistration registration) {
 
-
         /**
          * 增加了一个拦截器，设置令牌
          */

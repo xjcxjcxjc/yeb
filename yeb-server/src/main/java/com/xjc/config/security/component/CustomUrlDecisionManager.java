@@ -38,7 +38,8 @@ public class CustomUrlDecisionManager implements AccessDecisionManager {
                     throw new AccessDeniedException("你请求的页面不存在");
                 }
             }else{
-                Collection<? extends GrantedAuthority> grantedAuthorities= authentication.getAuthorities();
+                Collection<? extends GrantedAuthority> grantedAuthorities=
+                        authentication.getAuthorities();
                 /**
                  * 循环用户的角色有无匹配的
                  */
